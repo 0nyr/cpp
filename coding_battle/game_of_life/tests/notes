@@ -1,0 +1,22 @@
+input:
+.OO.
+O..O
+.OO.
+
+[0][0] nbNeighours = 2
+[0][1] nbNeighours = 2
+[0][2] nbNeighours = 2
+[0][3] nbNeighours = 2
+[1][0] nbNeighours = 2
+[1][1] nbNeighours = 5
+[1][2] nbNeighours = 5
+[1][3] nbNeighours = 2
+[2][0] nbNeighours = 2
+[2][1] nbNeighours = 2
+[2][2] nbNeighours = 2
+[2][3] nbNeighours = 2
+
+output:
+.OO.
+O..O
+.OO.
