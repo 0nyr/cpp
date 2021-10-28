@@ -1,2 +1,7 @@
 # compilation files
-.o
+*.o
+main
+
+# executables
+hello_world/hello
+hello_world/hello_from_o
