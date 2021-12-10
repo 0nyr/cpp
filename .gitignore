@@ -2,6 +2,9 @@
 *.o
 main
 
+bin
+obj
+
 # executables
 hello_world/hello
 hello_world/hello_from_o
