@@ -44,7 +44,7 @@ public:
 
 
 int main() {
-    const char * url = "https://leetcode.com/problems/nth-tribonacci-number/";
+    const char * url = "https://leetcode.com/problems/n-th-tribonacci-number/submissions/";
     std::cout << "Leetcode Tribonacci problem: " << url << std::endl;
     std::cout << "Provide an integer n, 0 <= n <= 37" << std::endl;
 
