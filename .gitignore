@@ -1,6 +1,8 @@
 # compilation files
 *.o
 main
+Main
+leetcode/**/Makefile
 
 bin
 obj
