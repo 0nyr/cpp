@@ -6,7 +6,7 @@ CFLAGS=-I $(INCLUDE) -march=native -O3 -D MAP -D NDEBUG
 LDLIBS=
 LDFLAGS=--ansi --pedantic -Wall --std=c++11
 
-SRCS=$(wildcard src/**/*.cpp) $(wildcard src/*.cpp)
+SRCS=$(wildcard src/**/*.cpp) $(wildcard src/*.cpp) $(wildcard *.cpp)
 OBJS=$(SRCS:src/%.cpp=obj/%.o)
 
 # targets
@@ -52,5 +52,3 @@ all:
 dirs:
 	mkdir -p bin/
 	mkdir -p obj/
-	mkdir -p src/
-	mkdir -p inc/
