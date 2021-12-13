@@ -3,6 +3,7 @@
 main
 Main
 leetcode/**/Makefile
+hackerrank/**/Makefile
 
 bin
 obj
