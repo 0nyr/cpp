@@ -30,3 +30,8 @@ def mange_une_crepe(pile_de_crepes: List[str]) -> List[str]:
 ```
 
 *Et bien évidemment, de la manière la plus exécrable, la plus compliquée ou la moins optimisée possible.*
+
+## TODOs
+
+* [ ] Convert the function `convertToString()` into a lambda expression.
+* [ ] Convert the converted lambda expression into a macro.

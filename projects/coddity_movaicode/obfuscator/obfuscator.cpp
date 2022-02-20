@@ -111,7 +111,7 @@ void obfuscateAndPrintTextRaw(std::string & text)
 {
     // print obfuscated argument texts
     text = obfuscateString(text);
-    std::cout << text << std::endl;
+    std::cout << '"' << text << '"' << "," << std::endl;
 }
 
 void deobfuscateAndPrintText(std::string & text)

@@ -12,58 +12,20 @@ class Crepe {
         ~Crepe() { delete next; };
 };
 
-std::string convertToString(char* a, int size)
-{
-    int i;
-    std::string s = "";
-    for (i = 0; i < size; i++) {
-        s = s + a[i];
-    }
-    return s;
-}
-
-// try C++ lambdas here, before making a macro
-/*
-#define CONVERT_TO_STRING(buffer,bufferLength) ({int i;
-    std::string s = ""; for (i = 0; i < size; i++) {s = s + a[i];}return s;})
-#define debug(text) (std::cout << LIGHT_ORANGE << "[debug]: " << text << " (" << __FILE__ << ":" << __LINE__ << ")" << NO_COLOR << std::endl)
-*/
-
-std::string deobfuscateString(std::string & str)
-{
-    // convert string to char array
-    char buffer[str.length()];
-    std::copy(str.begin(), str.end(), buffer);
-
-    // shift each char by 1 times its position in the string
-    for (int i = 0; i < (int)str.length(); i++) {
-        if (i % 2 == 0) {
-            buffer[i]++;
-        } else {
-            buffer[i]--;
-        }
-    }
-
-    // reconvert char array to string
-    return convertToString(buffer, str.length());
-}
-
-
-
 /**
  * @brief Remove the last crepe from the list
  * 
  * @param crepes a list of crepes
  * @return Crepe* the remaining list of crepes
  */
-Crepe * MangerUneCrepe(Crepe * c) {
+Crepe * MangerUneCrepe(Crepe * crepes) {
     // return nullptr if no crepes
-    if (c == nullptr) {
+    if (crepes == nullptr) {
         return nullptr;
     }
 
     // get last and before last crepes
-    Crepe * lastCrepe = c;
+    Crepe * lastCrepe = crepes;
     Crepe * beforeLastCrepe = nullptr;
 
     while (lastCrepe->next != nullptr) {
@@ -76,36 +38,36 @@ Crepe * MangerUneCrepe(Crepe * c) {
 
     // add a random topping to the last crepe
     std::vector<std::string> crepeToppings = {
-        "bs«of",
-        "rvoqkĨndos",
-        "lbmhªd",
-        "rvbsd",
-        "bindnm`u",
-        "optmdu",
-        "ljdm",
-        "bbqblfk",
-        "kbqenor",
-        "bi`nojfonor",
-        "uj`ocf",
-        "njfonor",
-        "bs©lf",
-        "splbsfr",
-        "rpib",
-        "bvqsx",
-        "dyomnthg",
-        "`srfmjb",
-        "ujsshpk",
-        "rbupm",
-        "fs`t",
-        "mfhhd",
-        "aĨuno",
-        "om`tsjpvd",
-        "cĨtgfqc`os",
-        "rbamd",
-        "bbhmkpty",
-        "omtunohvl",
-        "lĨuªnshud",
-        "qĨhnmhud"
+        "crêpe",
+        "supplément",
+        "mangée",
+        "sucre",
+        "chocolat",
+        "poulet",
+        "miel",
+        "caramel",
+        "lardons",
+        "champignons",
+        "viande",
+        "oignons",
+        "crème",
+        "tomates",
+        "soja",
+        "curry",
+        "explosif",
+        "arsenic",
+        "vitriol",
+        "savon",
+        "gras",
+        "neige",
+        "béton",
+        "plastique",
+        "désherbant",
+        "sable",
+        "cailloux",
+        "plutonium",
+        "météorite",
+        "régolite"
     };
 
     // +x since we use the first x elements of the vector differently
@@ -113,12 +75,12 @@ Crepe * MangerUneCrepe(Crepe * c) {
     int topping2 = (rand() % (crepeToppings.size() - 3)) + 3;
     int topping3 = (rand() % (crepeToppings.size() - 3)) + 3;
 
-    lastCrepePrepared += deobfuscateString(crepeToppings[0]) + 
-        " " + deobfuscateString(crepeToppings[topping1]) + 
-        ", " + deobfuscateString(crepeToppings[topping2]) + 
-        ", " + deobfuscateString(crepeToppings[1]) + 
-        " " + deobfuscateString(crepeToppings[topping3]) +
-        " " + deobfuscateString(crepeToppings[2]) + " !";
+    lastCrepePrepared += crepeToppings[0] + 
+        " " + crepeToppings[topping1] + 
+        ", " + crepeToppings[topping2] + 
+        ", " + crepeToppings[1] + 
+        " " + crepeToppings[topping3] +
+        " " + crepeToppings[2] + " !";
 
     std::cout << lastCrepePrepared << std::endl;
 
@@ -131,7 +93,7 @@ Crepe * MangerUneCrepe(Crepe * c) {
         beforeLastCrepe->next = nullptr;
     }
 
-    return c;
+    return crepes;
 }
 
 void AddCrepesToPile(Crepe * crepes, int nbOfCrepeToMake) {
