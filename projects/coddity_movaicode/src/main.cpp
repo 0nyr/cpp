@@ -28,7 +28,7 @@ cpp puis exécute la string en tant que code...
 
 class Crepe {
     public: 
-        std::string crepe;
+        std::string crepe = "";
         Crepe *next;
         Crepe() : crepe(crepe), next(nullptr) {};
         ~Crepe() { delete next; };
@@ -38,9 +38,8 @@ class CrepeFactory {
     public:
         CrepeFactory() {
             crepeToppings = {
-                "crepe",
-                ",",
-                " ",
+                "crêpe",
+                "supplément",
                 "sucre",
                 "chocolat fondu",
                 "poulet",
