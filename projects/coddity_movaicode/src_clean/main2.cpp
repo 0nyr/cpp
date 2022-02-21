@@ -4,7 +4,11 @@
 #include <vector>
 #include <cassert>
 
-// original file, working
+/*
+Continuing the minification process.
+Here, we also replace if-else statements with
+its one-liner version (condition) ? then : else;
+*/
 
 class Crepe {
     public: 
@@ -14,88 +18,58 @@ class Crepe {
         ~Crepe() { delete next; };
 };
 
-/**
- * @brief Remove the last crepe from the list
- * 
- * @param crepes a list of crepes
- * @return Crepe* the remaining list of crepes
- */
-Crepe * MangerUneCrepe(Crepe * crepes) {
-    // return nullptr if no crepes
-    if (crepes == nullptr) {
-        return nullptr;
-    }
-
-    // get last and before last crepes
-    Crepe * lastCrepe = crepes;
+Crepe * MangerUneCrepe(Crepe * c) {
+    if (c == nullptr) return nullptr;
+    Crepe * lastCrepe = c;
     Crepe * beforeLastCrepe = nullptr;
-
     while (lastCrepe->next != nullptr) {
         beforeLastCrepe = lastCrepe;
         lastCrepe = lastCrepe->next;
     }
-
-    // Add topping to last crepe
     std::string lastCrepePrepared = lastCrepe->crepe;
-
-    // add a random topping to the last crepe
     std::vector<std::string> crepeToppings = {
-        "crêpe",
-        "supplément",
-        "mangée",
-        "sucre",
-        "chocolat",
-        "poulet",
-        "miel",
-        "caramel",
-        "lardons",
-        "champignons",
-        "viande",
-        "oignons",
-        "crème",
-        "tomates",
-        "soja",
-        "curry",
-        "explosif",
-        "arsenic",
-        "vitriol",
-        "savon",
-        "gras",
-        "neige",
-        "béton",
-        "plastique",
-        "désherbant",
-        "sable",
-        "cailloux",
-        "plutonium",
-        "météorite",
-        "régolite"
+"bs«of","rvoqkĨndos","lbmhªd","rvbsd", "bindnm`u","optmdu",
+"ljdm","bbqblfk","kbqenor","bi`nojfonor","uj`ocf","njfonor",
+"bs©lf","splbsfr","rpib","bvqsx","dyomnthg","`srfmjb",
+"ujsshpk","rbupm","fs`t","mfhhd","aĨuno","om`tsjpvd","rbamd",
+"cĨtgfqc`os","bbhmkpty","omtunohvl","lĨuªnshud","qĨhnmhud"
     };
-
-    // +x since we use the first x elements of the vector differently
-    int topping1 = (rand() % (crepeToppings.size() - 3)) + 3; 
-    int topping2 = (rand() % (crepeToppings.size() - 3)) + 3;
-    int topping3 = (rand() % (crepeToppings.size() - 3)) + 3;
-
-    lastCrepePrepared += crepeToppings[0] + 
-        " " + crepeToppings[topping1] + 
-        ", " + crepeToppings[topping2] + 
-        ", " + crepeToppings[1] + 
-        " " + crepeToppings[topping3] +
-        " " + crepeToppings[2] + " !";
-
+    auto deodfuscateLambda = [&](std::string & str) {
+        char buffer[str.length()];
+        std::copy(str.begin(), str.end(), buffer);
+        for (int i = 0; i < (int)str.length(); i++) {
+            if (i % 2 == 0) {
+                buffer[i]++;
+            } else {
+                buffer[i]--;
+            }
+        }
+        auto convert = [&](char* a, int size) {
+            int i;
+            std::string s = "";
+            for (i = 0; i < size; i++) {
+                s = s + a[i];
+            }
+            return s;
+        };
+        return convert(buffer, str.length());
+    };
+    auto shortcutLambda = [&]() {
+        return rand() % (crepeToppings.size() - 3) + 3;
+    };
+    int topping1 = shortcutLambda();
+    int topping2 = shortcutLambda();
+    int topping3 = shortcutLambda();
+    lastCrepePrepared += deodfuscateLambda(crepeToppings[0]) + 
+        " " + deodfuscateLambda(crepeToppings[topping1]) + 
+        ", " + deodfuscateLambda(crepeToppings[topping2]) + 
+        ", " + deodfuscateLambda(crepeToppings[1]) + 
+        " " + deodfuscateLambda(crepeToppings[topping3]) +
+        " " + deodfuscateLambda(crepeToppings[2]) + " !";
     std::cout << lastCrepePrepared << std::endl;
-
-    // remove the last crepe
-    if (beforeLastCrepe == nullptr) {
-        // if the last crepe is the only one, we delete it
-        lastCrepe = nullptr;
-    } else {
-        // if the last crepe is not the only one, we delete it
+    (beforeLastCrepe == nullptr) ? lastCrepe = nullptr : 
         beforeLastCrepe->next = nullptr;
-    }
-
-    return crepes;
+    return c;
 }
 
 void AddCrepesToPile(Crepe * crepes, int nbOfCrepeToMake) {

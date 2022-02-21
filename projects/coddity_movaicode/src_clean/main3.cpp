@@ -4,6 +4,22 @@
 #include <vector>
 #include <cassert>
 
+/*
+Correction step: make sure everything is correct, and
+test with valgring for memory leak:
+
+    ==30804== 
+    ==30804== HEAP SUMMARY:
+    ==30804==     in use at exit: 0 bytes in 0 blocks
+    ==30804==   total heap usage: 18 allocs, 18 frees, 77,294 bytes allocated
+    ==30804== 
+    ==30804== All heap blocks were freed -- no leaks are possible
+    ==30804== 
+    ==30804== Use --track-origins=yes to see where uninitialised values come from
+    ==30804== For lists of detected and suppressed errors, rerun with: -s
+    ==30804== ERROR SUMMARY: 633 errors from 49 contexts (suppressed: 0 from 0)
+*/
+
 class Crepe {
     public: 
         std::string crepe = "";

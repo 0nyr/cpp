@@ -4,9 +4,9 @@ My personal participation to the challenge.
 
 (Crêpe++)--
 
-> Taken from the challenge README
-
 ## Énoncé du sujet : mange_une_crepe()
+
+> Taken from the challenge README
 
 Tous à poêle ! C'est l'heure de faire des crêpes !
 
@@ -33,5 +33,6 @@ def mange_une_crepe(pile_de_crepes: List[str]) -> List[str]:
 
 ## TODOs
 
-* [ ] Convert the function `convertToString()` into a lambda expression.
-* [ ] Convert the converted lambda expression into a macro.
+* [X] Convert the function `convertToString()` into a lambda expression.
+* [X] Convert the converted lambda expression into a macro.
+* [ ] Minify the code.
