@@ -19,8 +19,8 @@ int main() {
     }
     
     std::cout << "ints size: " << a.vect.size() << std::endl;
-    [&]{a.p();}();
+    [&]{a.p();}(); // the short lambda
     std::cout << "ints size: " << a.vect.size() << std::endl;
-    a.vect.pop_back();
+    a.vect.pop_back(); // comparison
     std::cout << "ints size: " << a.vect.size() << std::endl;
 }
