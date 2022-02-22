@@ -51,7 +51,7 @@ std::string obfuscateString(std::string & str)
     char buffer[str.length()];
     std::copy(str.begin(), str.end(), buffer);
 
-    // shift each char by 1
+    // shift each char by +1 or -1 depending on its position
     for (int i = 0; i < (int)str.length(); i++) {
         if (i % 2 == 0) {
             buffer[i]--;

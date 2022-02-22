@@ -43,13 +43,15 @@ Le C++ est un joli langage, bien que complexe. Il offre une syntaxe puissante, p
 
 J'aurais pu, comme @[finxol](https://github.com/finxol) choisir la voie de la rapidité. Avec C++ et les `lambda expressions`, on peut parvenir à un nombre de bytes encore inférieux à sa solution python (17 bytes), ou même celle de @[Shynif](https://github.com/Shynif) en JavaScript (15 bytes):
 
-Solution en **14 bytes** pour elever le dernier élément d'une liste (plus de détail sur le code [ici](:
+Solution en **14 bytes** pour elever le dernier élément d'une liste (plus de détail sur le code [ici](https://github.com/0nyr/cpp/tree/main/projects/movaicode/shortest_vect_pop)):
 
 ```cpp
 [&]{a.p();}();
 ```
 
-Cependant,, un grand pouvoir implique une grande irresponsabilité! J'ai donc choisi le côté obscur de la ~force~ crêpe ❗️
+Cependant,, un grand pouvoir implique une grande irresponsabilité! J'ai donc choisi le côté obscur de la ~force~ crêpe en faisant du  C++ obscur (manual obfuscating) ❗️
+
+> Code complet et non obscurci avec les explication dispobible [ici](https://github.com/0nyr/cpp/tree/main/projects/movaicode/coddity_movaicode_8).
 
 ```cpp
 Crepe * MangerUneCrepe(Crepe * cpp) {
@@ -71,3 +73,155 @@ Crepe * MangerUneCrepe(Crepe * cpp) {
     (b == nullptr) ? cpp = nullptr : b->next = nullptr;return cpp;
 }
 ```
+
+
+
+## ⭐️ Explications
+
+Quelques explications sur le code.
+
+J'ai eu envie de faire du C/C++ *obfuscated* en regardant [cette vidéo](https://youtu.be/rwOI1biZeD8) de la très bonne chaîne YouTube [Bisqwit](https://www.youtube.com/channel/UCKTehwyGCKF-b2wo0RKwrcg).
+
+L'idée de base de ce code est assez simple. Il s'agit de construire une liste chaînée basique. Une fois la liste chaînée de `Crepe*` construite, on peut alors appeler la fonction `Crepe * MangerUneCrepe(Crepe * cpp)`. On sélectionne alors 4 ingrédients aléatoires sous forme de `std::string` afin de prépaper la crêpe avant de la manger en affichant le message de la crêpe et de ses ingrédients. Ne reste qu'à `delete` la dernière crêpe et à modifier le pointeur de la crêpe précédente (`nullptr`) (plus quelques cas de bord à gérer). Quand on appelera la fonction qui permet de manger une crêpe, on aura donc un message aléatoire de la forme:
+
+```shell
+crêpe lardons, soja, météorite supplément béton !
+```
+
+La liste des ingrédients est la suivante:
+
+```cpp
+std::vector<std::string> crepeToppings = {
+    "sucre",
+    "chocolat",
+       ...
+    "météorite",
+    "régolite"
+};
+```
+
+Comme je veux faire du code "*obfuscated*", je ne veux pas qu'on puisse lire facilement le code, et encore moins les ingrédients, car ceux-ci sont parfois surprenants et je veux laisser la surprise intacte.
+
+Je crée alors un petit programme CLI `obfuscator` qui va me permettre d'*obfuscate* simplement des strings (par défaut), mais aussi de les *deobfuscate*.
+
+```shell
+(base)  ❮ onyr ★  kenzae❯ ❮ obfuscator❯❯ ./main hello world
+<<<< You have entered 3 arguments >>>>
+<<<< OBFUSCATE MODE >>>>
+
+ + arg: hello
+-----> Obfuscated: gfkmn
+-----> Deobfuscated: hello
+ + arg: world
+-----> Obfuscated: vpqmc
+-----> Deobfuscated: world
+```
+
+En passant le flag `-d`, le programme *deobfuscate* les paramètres:
+
+```shell
+(base)  ❮ onyr ★  kenzae❯ ❮ obfuscator❯❯ ./main -d gfkmn vpqmc
+<<<< You have entered 4 arguments >>>>
+<<<< DE-OBFUSCATE MODE >>>>
+
+ + arg: gfkmn
+-----> Deobfuscated: hello
+-----> Obfuscated: gfkmn
+ + arg: vpqmc
+-----> Deobfuscated: world
+-----> Obfuscated: vpqmc
+```
+
+La fonction `std::string obfuscateString(std::string & str)` est assez simple, et va simplement décaler les caractères dans le tableau de `char` de la `std::string` fournie en paramètre.
+
+```cpp
+// shift each char by +1 or -1 depending on its position
+for (int i = 0; i < (int)str.length(); i++) {
+    if (i % 2 == 0) {
+        buffer[i]--;
+    } else {
+        buffer[i]++;
+    }
+}
+```
+
+Cet algorithme a le mérite d'être simple mais offre le double avantage d'être simplement **réversible** ainsi que de fournir des versions différents de mêmes lettres car le décalage dépend de la position de la lettre dans la *string*.
+
+On va donc pouvoir *obfuscate* notre *vector* de *string* avec ce petit programme. On va également ajouter les termes `"crêpe", "supplément", "mangée"` au début de notre *vector* afin de masquer ces mots de la même façon. Il faudra simplement veiller à ne pas pouvoir les sélectionner aléatoirement. On se retrouve avec une liste d'ingrédient incompréhensible que l'on devra *deobfuscate* avant d'afficher.
+
+```cpp
+std::vector<std::string> crepeToppings = {
+    "bs«of",
+    "rvoqkĨndos",
+    "lbmhªd",
+    "bbqblfk",
+       ...
+    "qĨhnmhud"
+};
+```
+
+Maintenant, il ne reste qu'à écrire la fonction `Crepe * MangerUneCrepe(Crepe * c)`.
+
+```cpp
+/**
+ * @brief Remove the last crepe from the list
+ * 
+ * @param crepes a list of crepes
+ * @return Crepe* the remaining list of crepes
+ */
+Crepe * MangerUneCrepe(Crepe * crepes) {
+    // return nullptr if no crepes
+    if (crepes == nullptr) {
+        return nullptr;
+    }
+
+    // get last and before last crepes
+    Crepe * lastCrepe = crepes;
+    Crepe * beforeLastCrepe = nullptr;
+
+    while (lastCrepe->next != nullptr) {
+        beforeLastCrepe = lastCrepe;
+        lastCrepe = lastCrepe->next;
+    }
+
+    // Add topping to last crepe
+    std::string lastCrepePrepared = lastCrepe->crepe;
+
+    // add a random topping to the last crepe
+    std::vector<std::string> crepeToppings = {
+        "crêpe",
+        "supplément",
+        "mangée",
+        "sucre",
+          ...
+        "régolite"
+    };
+
+    // +x since we use the first x elements of the vector differently
+    int topping1 = (rand() % (crepeToppings.size() - 3)) + 3; 
+    int topping2 = (rand() % (crepeToppings.size() - 3)) + 3;
+    int topping3 = (rand() % (crepeToppings.size() - 3)) + 3;
+
+    lastCrepePrepared += crepeToppings[0] + 
+        " " + crepeToppings[topping1] + 
+        ", " + crepeToppings[topping2] + 
+        ", " + crepeToppings[1] + 
+        " " + crepeToppings[topping3] +
+        " " + crepeToppings[2] + " !";
+
+    std::cout << lastCrepePrepared << std::endl;
+
+    // remove the last crepe
+    if (beforeLastCrepe == nullptr) {
+        // if the last crepe is the only one, we delete it
+        lastCrepe = nullptr;
+    } else {
+        // if the last crepe is not the only one, we delete it
+        beforeLastCrepe->next = nullptr;
+    }
+
+    return crepes;
+}
+```
+
+On rentre alors dans la dernière partie, celle du processus de *manual obfuscation*. 'applique les principes de la [vidéo](J

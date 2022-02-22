@@ -26,9 +26,9 @@ Crepe * MangerUneCrepe(Crepe * cpp) {
     {int i;std::string s="";for(i=0;i<size;i++){s=s+a[i];}return s;};
     return L1(buffer,str.length());};auto L2=[&]()
     {return rand()%(t.size()-3)+3;};p+=L0(t[0])+" "+L0(t[L2()])+", "
-    +L0(t[L2()])+", "+L0(t[1])+" "+ L0(t[L2()])+" "+L0(t[2])+" !";
-    std::cout << p << std::endl; delete l;
-    (b == nullptr) ? cpp = nullptr : b->next = nullptr;return cpp;
+    +L0(t[L2()])+", "+L0(t[1])+" "+L0(t[2])+" "+L0(t[L2()])+" !";
+    std::cout<<p<<std::endl;delete l;
+    (b==nullptr)?cpp=nullptr:b->next=nullptr;return cpp;
 }
 
 void AddCrepesToPile(Crepe * crepes, int nbOfCrepeToMake) {
