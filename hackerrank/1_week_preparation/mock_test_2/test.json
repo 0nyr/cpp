@@ -1,0 +1,19 @@
+{
+    "etudiant": {
+        "prenom": "mickey",
+        "nom": "mouse",
+        "id": 484597,
+        "groupe": 3,
+        "animaux": [
+            {
+                "type": "chat", 
+                "nom": "ruby"
+            },
+            {
+                "type": "poisson", 
+                "nom": "frank"
+            }
+        ]
+    }
+}
+    
