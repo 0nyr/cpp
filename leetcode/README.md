@@ -1,6 +1,6 @@
 # Notes about Competitive Programming
 
-
+compile: `g++ -o main main.cpp --ansi --pedantic -Wall --std=c++11`
 
 ## Tips
 
