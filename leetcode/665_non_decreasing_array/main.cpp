@@ -52,13 +52,13 @@ class Tester {
 
         template <typename T>
         void run(T & expected, T & output) {
-            std::cout << ">>> Test " << this->testNumber++ << ": " << std::endl;
+            std::cout << "Test " << this->testNumber++ << ": " << std::endl;
             std::cout << "    --expect: " << expected << std::endl;
             std::cout << "    --output: " << output << std::endl;
             if (expected != output) {
-                std::cout << "    ❌ --FAILED " << std::endl;
+                std::cout << "    ❌ FAILED " << std::endl;
             } else {
-                std::cout << "    ✅ --OK " << std::endl;
+                std::cout << "    ✅ OK " << std::endl;
             }
             std::cout << std::endl; 
         }
@@ -66,13 +66,13 @@ class Tester {
         /** For simple types like int or bool */
         template <typename T>
         void run(T expected, T output) {
-            std::cout << ">>> Test " << this->testNumber++ << ": " << std::endl;
+            std::cout << "Test " << this->testNumber++ << ": " << std::endl;
             std::cout << "    --expect: " << expected << std::endl;
             std::cout << "    --output: " << output << std::endl;
             if (expected != output) {
-                std::cout << "    ❌ --FAILED " << std::endl;
+                std::cout << "    ❌ FAILED " << std::endl;
             } else {
-                std::cout << "    ✅ --OK " << std::endl;
+                std::cout << "    ✅ OK " << std::endl;
             }
             std::cout << std::endl; 
         }

@@ -57,5 +57,31 @@ int main() {
     }
     std::cout << std::endl;
 
+    // find
+    std::string str = "geeksforgeeks a computer science";
+    std::string str1 = "geeks";
+  
+    // Find first occurrence of "geeks"
+    size_t found = str.find(str1);
+    if (found != std::string::npos)
+        std::cout << "First occurrence is " << found << std::endl;
+
+    auto data = std::vector<std::string>{"flower","flow","flight"};
+
+    
+    std::string prefix = data[0];
+    for (auto word : data) {
+        std::cout << word << ":" << std::endl;
+        size_t found_index = word.find(prefix);
+        std::cout << "    found_index: " << found_index << std::endl;
+        while (found_index != 0) {
+            prefix = prefix.substr(0, prefix.size() - 1); // remove last character
+            std::cout << "    prefix: " << prefix << "   ";
+            found_index = word.find(prefix);
+            std::cout << "found_index: " << found_index << std::endl;
+        }
+    }
+    
+
     return 0; 
 }
