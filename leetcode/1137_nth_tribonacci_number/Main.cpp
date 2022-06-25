@@ -28,7 +28,9 @@ public:
         unsigned long counter = 2;
         while(counter < n) 
         {
-            tri_n_plus_3 = compute_tribonacci_n_plus_3(tri_n, tri_n_plus_1, tri_n_plus_2);
+            tri_n_plus_3 = compute_tribonacci_n_plus_3(
+                tri_n, tri_n_plus_1, tri_n_plus_2
+            );
 
             // shift saved results
             tri_n = tri_n_plus_1;

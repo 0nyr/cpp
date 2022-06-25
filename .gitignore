@@ -12,3 +12,6 @@ obj
 hello_world/hello
 hello_world/hello_from_o
 esker_hackerrank_test/link.txt
+
+# miscellaneous
+*.log
