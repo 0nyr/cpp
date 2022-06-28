@@ -5,7 +5,7 @@
 
 class Solution {
     public:
-        std::string longestCommonPrefix(std::vector<std::string>& strs) {
+        std::string longestCommonPrefix2(std::vector<std::string>& strs) {
             if (strs.size() == 0) {
                 return "";
             } 
@@ -21,6 +21,29 @@ class Solution {
                     // remove last character of index
                     prefix = prefix.substr(0, prefix.size() - 1); 
                 }
+            }
+            return prefix;
+        }
+
+        std::string longestCommonPrefix(std::vector<std::string>& strs) {
+            if (strs.size() == 0) {
+                return "";
+            } 
+            if (strs.size() == 1) {
+                return strs[0];
+            }
+
+            std::string prefix = strs[0];
+            for (std::string word : strs) {
+
+                size_t index = 0;
+                while (word[index] == prefix[index]) { 
+                    index++;
+                    if(index >= word.size() || index >= prefix.size()) {
+                        break;
+                    }
+                }
+                prefix = prefix.substr(0, index);
             }
             return prefix;
         }
